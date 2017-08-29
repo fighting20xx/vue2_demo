@@ -9,7 +9,18 @@
 
 </template>
 <script>
-
+//    function token() {
+//        var token = localStorage.getItem("token");
+//        //jquery全局配置
+//        $.ajaxSetup({
+//            dataType: "json",
+//            cache: false,
+//            headers: {
+//                "token": token
+//            }
+//
+//        });
+//    }
     function baseURL() {
 //        //当前路径
 //        var pathName = window.document.location.pathname;

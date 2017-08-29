@@ -12,7 +12,7 @@
                 <li class="header">导航菜单</li>
 
                 <!-- vue生成的菜单 -->
-                <menu-item :item="item" v-for="item in menuList"></menu-item>
+                <!--<menu-item :item="item" v-for="item in menuList"></menu-item>-->
             </ul>
         </section>
     </aside>
@@ -21,24 +21,33 @@
 
 <script>
     export default {
+        data:function(){
+            return {
+                menuList:[],
+            }
+        },
         name: 'menu-item',
         props:{item:{}},
         methods: {
+//            getMenuList: function () {
+//                $.getJSON( "sys/menu/user", function(r){
+//                    vm.menuList = r.menuList;
+//                    window.permissions = r.permissions;
+//                });
+//            },
             getMenuList: function () {
-                $.getJSON(this.GLOBAL.baseURL + "sys/menu/user", function(r){
-                    vm.menuList = r.menuList;
+                console.log("   http.get('sys/menu/user'");
+                this.$http.get('sys/menu/user').then(response => {
+                    console.log(response);
+                    this.menuList = r.menuList;
                     window.permissions = r.permissions;
+                }, response => {
+
                 });
             },
-            get11: function () {
-                this.$http.jsonp(this.GLOBAL.baseURL + "sys/menu/user",function () {
-                    vm.menuList = r.menuList;
-                    window.permissions = r.permissions;
-                })
-            },
             getUser: function(){
-                console.log(this.GLOBAL.baseURL + "sys/menu/user");
-                $.getJSON(this.GLOBAL.baseURL + "sys/user/info", function(r){
+                console.log("$.getJSON('sys/user/info");
+                $.getJSON("sys/user/info", function(r){
                     vm.user = r.user;
                 });
             },
@@ -55,9 +64,10 @@
                         var data = "password="+vm.password+"&newPassword="+vm.newPassword;
                         $.ajax({
                             type: "POST",
-                            url: this.GLOBAL.baseURL + "sys/user/password",
+                            url: "sys/user/password",
                             data: data,
                             dataType: "json",
+                            token:localStorage.getItem('token'),
                             success: function(result){
                                 if(result.code == 0){
                                     layer.close(index);
@@ -82,7 +92,7 @@
         created: function(){
             this.getMenuList();
             this.getUser();
-            this.get11();
+
         },
         updated: function(){
             //路由

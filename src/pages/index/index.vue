@@ -1,35 +1,13 @@
 <style lang="less" scoped>
-	.login-msg {
-		padding: 50px;
-		text-align: center;
-	}
-	.msg {
-		padding: 50px;
-		text-align: center;
-		font-size: 20px;
-		color: red;
-	}
+
 </style>
 <template>
 	<div>
-		<div class="login-msg" v-if="!user.id">
-			<router-link to="/login">你还未登录，请先登录</router-link>
-		</div>
-		<div class="msg" v-if="user.id">
-			<img width="50" :src="logo" alt=""> <br>
-			恭喜你已经坤源云平台！
-		</div>
+		1111这是首页------11111
 	</div>
 </template>
 <script>
-    import { mapState } from 'vuex'
-	import logo from './logo.png'
-    export default {
-		data() {
-			return {
-				logo
-			}
-		},
-        computed: mapState({ user: state => state.user }),
-    }
+ export default {
+
+ }
 </script>

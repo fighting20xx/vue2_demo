@@ -7,7 +7,7 @@ const isEnv = process.env.NODE_ENV == 'production'
  * 清除生产目录文件
  */
 const del = require('del')
-gulp.task('clean', ['upload'], function (callback) {
+gulp.task('clean', function (callback) {
     console.log('## 已经成功部署到服务器上')
     console.log('## 清除原来编译的代码')
     del(['.' + config.publicPath], callback)
@@ -40,9 +40,10 @@ gulp.task('upload', ['build'], function (callback) {
 /**
  * 上传到测试服务器上
  */
-gulp.task('devTest', ['build', 'upload', 'clean'])
+gulp.task('devTest', ['build', 'clean']);
 
 /**
  * 上传到生产服务器上
  */
 gulp.task('devDist', ['build', 'upload', 'clean'])
+

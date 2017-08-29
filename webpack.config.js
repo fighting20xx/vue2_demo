@@ -24,14 +24,14 @@ plugins.push(
         filename: './index.html', //生成的html存放路径，相对于 path
         template: './src/template/index.html', //html模板路径
     })
-)
+);
 
 
 module.exports = {
     entry: ['./src/main.js'], //编译入口文件
     output: {
-        publicPath: './', //服务器的路径 publicPath: config.publicPath,
-        path: path.resolve(__dirname + config.publicPath), //编译到app目录
+        publicPath: '/elink-admin/', //服务器的路径 publicPath: config.publicPath,
+        path: path.resolve(__dirname + '/elink-admin/'), //编译到app目录 path: path.resolve(__dirname + config.publicPath)
         filename: '[name].js?[hash]' //编译后的文件名
     },
     module: {
@@ -97,19 +97,23 @@ module.exports = {
     },
     devtool: '#eval-source-map',
     devServer: {
+        open: true,
         historyApiFallback: true,
         hot: true,
-        inline: true,
-        progress: true,
-        port: 8082,
+        port: 4006,
         host: 'localhost',
-        proxy: {
-            '/elink-admin/*': {
-                target: 'http://localhost',
+        inline: true,
+        stats: {
+            colors: true //显示不同的颜色区分打包的文件
+        },
+        proxy: { //代理服务器
+            '/elink-admin/sys/*': {
+                target: config.target,
                 changeOrigin: true,
                 secure: false
             }
         }
+
     }
 
 };

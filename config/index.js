@@ -13,7 +13,7 @@ module.exports = {
         pass: '88888888', //密码
         port: 22 //端口
     },
-    publicPath: '/app/', //程序在网站根路径地址
+    publicPath: '/elink-admin/', //程序在网站根路径地址
     hot:true,
-    target: 'https://cnodejs.org/' //连接的服务器地址
-}
+    target: 'http://192.168.0.186:8082' //连接的服务器地址
+};
