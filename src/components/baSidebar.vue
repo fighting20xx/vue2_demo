@@ -1,7 +1,33 @@
-<style>
-    .al-sidebar {
-        height: 100%;
-        box-shadow: 5px 5px 5px hsla(0, 30%, 86%, 10);
+<style >
+    .main-sidebar {
+        /*width: 200px;*/
+        /*height: 100%;*/
+        /*box-shadow: 5px 5px 5px hsla(0, 30%, 86%, 10);*/
+        /*background-color: #0177B5;*/
+        /*opacity: 0.8;*/
+    }
+    aside{
+        background:#dcdcdc;
+    }
+    .sidebar-menu>li{
+        background:#4fbd88;
+        margin-bottom:8px;
+
+    }
+    .sidebar-menu>li a{
+        color:#fff
+    }
+    .sidebar-menu>li ul{
+        background:#dcdcdc;
+        color:#333;
+        text-align: 30px;
+    }
+    .sidebar-menu>li ul a{
+        color:#000;
+    }
+    .sidebar-menu>li a span{
+        margin-left:30px;
+        font-weight:700;'
     }
 </style>
 
@@ -10,9 +36,8 @@
         <section class="sidebar">
             <ul class="sidebar-menu">
                 <li class="header">导航菜单</li>
-
                 <!-- vue生成的菜单 -->
-                <!--<menu-item :item="item" v-for="item in menuList"></menu-item>-->
+                <menu-item :item="item" v-for="item in menuList"></menu-item>
             </ul>
         </section>
     </aside>
@@ -21,32 +46,27 @@
 
 <script>
     export default {
+        name: 'baSidebar',
         data:function(){
             return {
                 menuList:[],
+                password:'',
+                newPassword:'',
+                navTitle:"欢迎页"
             }
         },
-        name: 'menu-item',
-        props:{item:{}},
         methods: {
-//            getMenuList: function () {
-//                $.getJSON( "sys/menu/user", function(r){
-//                    vm.menuList = r.menuList;
-//                    window.permissions = r.permissions;
-//                });
-//            },
             getMenuList: function () {
-                console.log("   http.get('sys/menu/user'");
+                console.log(localStorage.getItem("token"));
                 this.$http.get('sys/menu/user').then(response => {
                     console.log(response);
-                    this.menuList = r.menuList;
-                    window.permissions = r.permissions;
+                    this.menuList = response.body.menuList;
+                    window.permissions = response.body.permissions;
                 }, response => {
 
                 });
             },
             getUser: function(){
-                console.log("$.getJSON('sys/user/info");
                 $.getJSON("sys/user/info", function(r){
                     vm.user = r.user;
                 });
@@ -92,7 +112,6 @@
         created: function(){
             this.getMenuList();
             this.getUser();
-
         },
         updated: function(){
             //路由

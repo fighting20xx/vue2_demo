@@ -3,6 +3,7 @@
 import baSidebar from './baSidebar.vue'
 // import msgCenter from './msgCenter.vue'
 import pageTop from './pageTop.vue'
+import menuItem from './menuItem.vue'
 
 
 export default {
@@ -10,5 +11,6 @@ export default {
     // baPanel,
     baSidebar,
     // msgCenter,
-    pageTop
+    pageTop,
+    menuItem
 }

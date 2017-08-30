@@ -21,13 +21,12 @@
               <i v-else class="fa fa-circle-o"></i> {{item.name}}
           </a>
     </li>
-    '
-
-
 </template>
 <script>
-
-
+    export default {
+        name: 'menuItem',
+        props:{item:{}},
+    }
 </script>
 <style>
 

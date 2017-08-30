@@ -47,6 +47,7 @@
 </template>
 <script>
 
+
     export default {
         data:function(){
             return {
@@ -62,41 +63,36 @@
             refreshCode: function() {
                 this.src = "http://localhost:8082/elink-admin/captcha.jpg?t=" + $.now();
             },
-            login: function (event) {
-                var data = "username="+this.username+"&password="+this.password+"&captcha="+this.captcha;
-                $.ajax({
-                    crossDomain:true,
-                    dataType:"jsonp",
-                    type: "POST",
-                    url: "/elink-admin/sys/login",
-                    data: data,
-                    dataType: "json",
-                    success: function(result) {
-                        if(result.code == 0) { // 登录成功
-                            localStorage.setItem("token", result.token);
+            login (event) {
+                let vm = this;
+                console.log("loginggggggggggggg");
+                var dataObj = {
+                        username:vm.username,
+                        password:vm.password,
+                    	captcha:vm.captcha
+				} ;
+				 var data = "username="+this.username+"&password="+this.password+"&captcha="+this.captcha;
 
-//                            window.jQuery.ajaxSetup({
-//                                dataType: "json",
-//                                cache: false,
-//                                headers: {
-//                                    "token":  localStorage.getItem("token")
-//                                }
-//                            });
-
-                            vm.$router.push({path:'/app'});
-                        } else {
-                            console.log(result.msg);
-                            vm.error = true;
-                            vm.errorMsg = result.msg;
-                            this.refreshCode();
-                        }
+                this.$http.post('/elink-admin/sys/login?'+data)
+				.then((result) => {
+                    console.log(result);
+                    if(result.body.code == 0) { // 登录成功
+                        localStorage.setItem("token", result.body.token);
+                        vm.$router.push({path:'/app'});
+                    } else {
+                        console.log(result.body.msg);
+                        vm.error = true;
+                        vm.errorMsg = result.body.msg;
+                        vm.refreshCode();
                     }
-                });
+                }, (result) => {
 
+                });
             }
+
         },
         created: function(){
-            console.log("要去登录啦，，，，，，，，，，");
+            console.log("登录页面，，，，，，，，，，");
         }
     };
 
@@ -104,10 +100,13 @@
 <style>
 	.contain{
 		width: 500px;
-		height: 500px;
+		height: 400px;
 		position: absolute;
 		left: calc(50% - 250px);
-		top: calc(50% - 300px);;
+		top: calc(50% - 300px);
+		background-color: #F0F3F4;
+		border: solid 1px #e6e6e6;
+		padding: 30px;
+		box-sizing: border-box;
 	}
-
 </style>

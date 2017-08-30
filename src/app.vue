@@ -1,5 +1,12 @@
 <style>
-    /*@import 'sass/main.scss';*/
+    .body-bg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #F0F3F4;
+    }
 
 </style>
 <template>
@@ -9,12 +16,12 @@
             <page-top></page-top>                        <!--这是顶部模块  ，写成一个指令的样式-->
             <ba-sidebar></ba-sidebar>                   <!--这是侧边栏 模块，写成一个指令的样式-->
 
-            <!--<div class="al-main">-->
-                <!--<div class="al-content">-->
+            <div class="al-main">
+                <div class="al-content">
                     <!--<content-top></content-top>-->
-                    <!--<div ui-view autoscroll="true" autoscroll-body-top></div>-->
-                <!--</div>-->
-            <!--</div>-->
+                    <div ui-view autoscroll="true" autoscroll-body-top></div>
+                </div>
+            </div>
 
             <!--<footer class="al-footer clearfix">-->
                 <!--<div class="al-footer-right">Created with <i class="ion-heart"></i></div>-->

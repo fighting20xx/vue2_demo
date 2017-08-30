@@ -40,7 +40,7 @@ gulp.task('upload', ['build'], function (callback) {
 /**
  * 上传到测试服务器上
  */
-gulp.task('devTest', ['build', 'clean']);
+gulp.task('devTest', ['build']);
 
 /**
  * 上传到生产服务器上
