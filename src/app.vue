@@ -1,52 +1,84 @@
-<style>
-    .body-bg {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #F0F3F4;
-    }
 
-</style>
 <template>
     <div class="body-bg">
         <!--<main v-if="$pageFinishedLoading" v-class="{ 'menu-collapsed': $baSidebarService.isMenuCollapsed() }">   &lt;!&ndash;这是主模块， 只有在加载图片结束的时候 才会显示&ndash;&gt;-->
 
-            <page-top></page-top>                        <!--这是顶部模块  ，写成一个指令的样式-->
-            <ba-sidebar></ba-sidebar>                   <!--这是侧边栏 模块，写成一个指令的样式-->
-
+            <page-top class="pageTop"></page-top>                        <!--这是顶部模块  ，写成一个指令的样式-->
             <div class="al-main">
-                <div class="al-content">
-                    <!--<content-top></content-top>-->
-                    <div ui-view autoscroll="true" autoscroll-body-top></div>
-                </div>
+
+                <ba-sidebar class="baSidebar"></ba-sidebar>                   <!--这是侧边栏 模块-->
+
+
+                <span class="al-content">
+                    <span class="al-wrap">
+
+                            <router-view></router-view>
+                            <footer class="al-footer ">
+                                <div class="al-footer-right">Created by   浙江坤源节能科技有限公司<i class="ion-heart"></i></div>
+                            </footer>
+
+
+                    </span>
+                </span>
+
             </div>
 
-            <!--<footer class="al-footer clearfix">-->
-                <!--<div class="al-footer-right">Created with <i class="ion-heart"></i></div>-->
-                <!--<div class="al-footer-main clearfix">-->
-                    <!--<div class="al-copy">Blur Admin 2016</div>-->
-                    <!--<ul class="al-share clearfix">-->
-                        <!--<li><i class="socicon socicon-facebook"></i></li>-->
-                        <!--<li><i class="socicon socicon-twitter"></i></li>-->
-                        <!--<li><i class="socicon socicon-google"></i></li>-->
-                        <!--<li><i class="socicon socicon-github"></i></li>-->
-                    <!--</ul>-->
-                <!--</div>-->
-            <!--</footer>     &lt;!&ndash;-这是底部的 每个页面都有的分享按钮一直存在的  Facebook  tumblr   &ndash;&gt;-->
+               <!---这是底部的 每个页面都有的分享按钮一直存在的   -->
             <!--<back-top></back-top>                        &lt;!&ndash;这是返回到顶部的按钮，  只有在滑动条出现的时候才会出现&ndash;&gt;-->
         <!--</main>-->
 
         <!--<div id="preloader" v-show="!$pageFinishedLoading">     &lt;!&ndash;这是加载图片，一直转圈，只有加载完成，才不显示&ndash;&gt;-->
             <!--<div></div>-->
         <!--</div>-->
-
     </div>
 </template>
 <script>
 
     export default {
-//
+
     }
 </script>
+<style>
+    .body-bg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #F0F3F4;
+        font-size: 0.5em;
+
+    }
+    .al-main {
+        position: absolute;
+        top: 55px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: -webkit-inline-flex;
+        display: inline-flex;
+        background-color: #eeeeee;
+    }
+    .baSidebar {
+        width: 165px;
+    }
+    .al-content {
+        position: relative;
+        flex: 1 ;
+        margin: 10px 10px 5px 25px;
+        overflow-x: hidden;
+    }
+    .al-wrap {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
+    .al-footer {
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+    }
+</style>

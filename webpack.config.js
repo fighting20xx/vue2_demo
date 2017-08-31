@@ -151,7 +151,7 @@ module.exports = {
         open: true,                                             //When open is enabled, the dev server will open the browser.
         // historyApiFallback: true,
         port: 4006,                                             //指定要监听请求的端口号：
-        host: 'localhost',                                     //如果你希望服务器外部可访问，指定如下：
+        host: '192.168.0.186',                                     //如果你希望服务器外部可访问，指定如下：
         inline: true,                                          //默认情况下，应用程序启用内联模式(inline mode)。这意味着一段处理实时重载的脚本被插入到你的包(bundle)中，也可以使用 iframe 模式，它在通知栏下面使用 <iframe> 标签，包含了关于构建的消息。切换到 iframe 模式：inline:false
         stats: "errors-only",
         proxy: { //代理服务器

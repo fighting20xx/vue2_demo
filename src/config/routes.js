@@ -13,12 +13,12 @@ export default [
         component: App,                                //这里的每一个xx.vue文件 导入的话，都当成一个组件来看待
         children: [
             {
-                path: '/',            //首页
+                path: '/',            //默认的首页
                 meta: { auth: false },
                 component: resolve => require(['../pages/index/index.vue'], resolve)
             },
             {
-                path: '/signout', //退出
+                path: '/signout',  //退出
                 component: resolve => require(['../pages/signout/signout.vue'], resolve)
             },
             {
@@ -34,6 +34,14 @@ export default [
                         component: resolve => require(['../pages/home/myPages/page2.vue'], resolve)
                     }
                 ]
+            },
+            {
+                path: '/systemjoin', //退出
+                component: resolve => require(['../pages/systemjoin/systemjoin.vue'], resolve)
+            },
+            {
+                path: '/testPage', //退出
+                component: resolve => require(['../pages/testPage/testPage.vue'], resolve)
             },
             {
                 path: '*', //其他页面，强制跳转到登录页面

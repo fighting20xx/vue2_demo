@@ -4,7 +4,7 @@ import ElementUI from 'element-ui';
 import VueResource from 'vue-resource';         //异步请求插件  类似于jQuery的  ajax
 
 
-// import 'element-ui/lib/theme-default/index.css'
+import 'element-ui/lib/theme-default/index.css'
 
 
 //这里把src当成根目录， main.js 的上一级就是.  所以主目录下的文件都在./下面
@@ -48,17 +48,21 @@ const router = new VueRouter({
 // });
 
 var tokenVal = localStorage.getItem('token');   //获取token 添加到头上
-// Vue.http.interceptors.push((request, next) =>{                              //http 拦截器 ，在发送之前，  或者之后做一些事情。
-//         // if(tokenVal) {
-//          request.headers['token'] = tokenVal;
-//         console.log("add token    "+localStorage.getItem('token'));
-//         // request.method = 'POST';//在请求之前可以进行一些预处理和配置
-//
-//         next( function (response) {
-//             return response;
-//         })
-//     }
-// );
+Vue.http.interceptors.push((request, next) =>{                              //http 拦截器 ，在发送之前，  或者之后做一些事情。
+        // if(tokenVal) {
+        //  request.headers['token'] = tokenVal;
+        // console.log("add token    "+localStorage.getItem('token'));
+        // request.method = 'POST';//在请求之前可以进行一些预处理和配置
+
+        next( function (response) {
+            // console.log(response);
+            // if(response.body.code == 401){   //无效的token
+            //     vm.$router.push({path:'/'});
+            // }
+            return response;
+        })
+    }
+);
 Vue.http.headers.common['token'] = tokenVal;
 
 const vm = new Vue({
