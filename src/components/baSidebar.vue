@@ -2,7 +2,7 @@
     .main-sidebar {
         transition: 0.1s;
         background-color:#1c2b36;
-        opacity: 1.2;
+
     }
 
     /*@media only screen and (min-width: 480px) and (max-width: 767px){*/
@@ -142,10 +142,24 @@
                 location.href = baseURL + 'login.html';
             }
         },
-        created: function () {
+        beforeMount: function () {
             this.getMenuList();
             this.getUser();
         },
+//        beforeRouteEnter (to, from, next) {
+//            getPost(to.params.id, (err, post) => {
+//                if (err) {
+//                    // display some global error message
+//                    next(false)
+//                } else {
+//                    next(vm => {
+//                        this.getMenuList();
+//                        this.getUser();
+//                    })
+//                }
+//            })
+//        },
+
         updated: function () {
             var router = vm.$router;
             console.log("11111111111111111111111");

@@ -1,19 +1,14 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router' ;            // 这是必须模块  ，vue和路由
+import VueRouter from 'vue-router' ;                    // 这是必须模块  ，vue和路由
 import ElementUI from 'element-ui';
-import VueResource from 'vue-resource';         //异步请求插件  类似于jQuery的  ajax
-
-
+import VueResource from 'vue-resource';                  //异步请求插件  类似于jQuery的  ajax
 import 'element-ui/lib/theme-default/index.css'
-
-
-//这里把src当成根目录， main.js 的上一级就是.  所以主目录下的文件都在./下面
+                                                            //这里把src当成根目录， main.js 的上一级就是.  所以主目录下的文件都在./下面
 import routes from './config/routes'                     //这是路由位置，项目的目录
 import store from './store/';                             //这是vuex的  状态仓库
 import components from './components/components'       //加载公共组件
 
-// import './css/common.css'
-// import './css/common.less'
+
 
 Vue.use(ElementUI);
 Vue.use(VueResource);
@@ -31,9 +26,7 @@ Object.keys(components).forEach((key) => {                     //把组件目录
 
 
 
-
-
-Vue.use(VueRouter);                  //注册路由
+Vue.use(VueRouter);                                          //注册路由
 const router = new VueRouter({
     routes
 });
@@ -47,12 +40,24 @@ const router = new VueRouter({
 //     next()
 // });
 
-var tokenVal = localStorage.getItem('token');   //获取token 添加到头上
+const vm = new Vue({                                         //建立全局的Vue对象，  并挂载到window上面。
+    el:"#app",
+    store:store,
+    router:router
+});
+window.vm = vm;
+
+
+
+
+
+
+
+
+
 Vue.http.interceptors.push((request, next) =>{                              //http 拦截器 ，在发送之前，  或者之后做一些事情。
-        // if(tokenVal) {
-        //  request.headers['token'] = tokenVal;
-        // console.log("add token    "+localStorage.getItem('token'));
-        // request.method = 'POST';//在请求之前可以进行一些预处理和配置
+
+        Vue.http.headers.common['token'] = localStorage.getItem('token');   // 拦截每次请求 顺便 把token带上
 
         next( function (response) {
             // console.log(response);
@@ -63,15 +68,7 @@ Vue.http.interceptors.push((request, next) =>{                              //ht
         })
     }
 );
-Vue.http.headers.common['token'] = tokenVal;
 
-const vm = new Vue({
-    el:"#app",
-    store:store,
-    router:router
-});
-
-window.vm = vm;
 
 
 

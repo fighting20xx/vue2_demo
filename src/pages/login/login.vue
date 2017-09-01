@@ -64,13 +64,7 @@
                 this.src = "http://localhost:8082/elink-admin/captcha.jpg?t=" + $.now();
             },
             login (event) {
-                let vm = this;
-                console.log("loginggggggggggggg");
-                var dataObj = {
-                        username:vm.username,
-                        password:vm.password,
-                    	captcha:vm.captcha
-				} ;
+//                let vm = this;
 				 var data = "username="+this.username+"&password="+this.password+"&captcha="+this.captcha;
 
                 this.$http.post('/elink-admin/sys/login?'+data)
@@ -78,6 +72,7 @@
                     console.log(result);
                     if(result.body.code == 0) { // 登录成功
                         localStorage.setItem("token", result.body.token);
+//                        this.$store.state.common.token=result.body.token;
                         vm.$router.push({path:'/app'});
                     } else {
                         console.log(result.body.msg);

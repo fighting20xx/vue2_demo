@@ -48,8 +48,6 @@
         width: 100%;
         height: 100%;
         background-color: #F0F3F4;
-        font-size: 0.5em;
-
     }
     .al-main {
         position: absolute;
