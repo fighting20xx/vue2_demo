@@ -2,7 +2,7 @@
     .main-sidebar {
         transition: 0.1s;
         background-color:#1c2b36;
-
+        overflow: hidden;
     }
 
     /*@media only screen and (min-width: 480px) and (max-width: 767px){*/
@@ -63,6 +63,9 @@
                 <el-menu-item  index="1000-2">
                     <router-link to="/testPage">测试页</router-link>
                 </el-menu-item>
+                <el-menu-item  index="1000-3">
+                    <router-link to="/testPage2">测试图片提交</router-link>
+                </el-menu-item>
             </el-submenu>
 
         </el-menu>
@@ -90,9 +93,8 @@
         },
         methods: {
             getMenuList: function () {
-                console.log(localStorage.getItem("token"));
                 this.$http.get('sys/menu/user').then(response => {
-                    console.log(response.body.menuList);
+//                    console.log(response.body.menuList);
                     this.menuList = response.body.menuList;
                     window.permissions = response.body.permissions;
                 }, response => {
@@ -142,24 +144,10 @@
                 location.href = baseURL + 'login.html';
             }
         },
-        beforeMount: function () {
+        created: function () {
             this.getMenuList();
             this.getUser();
         },
-//        beforeRouteEnter (to, from, next) {
-//            getPost(to.params.id, (err, post) => {
-//                if (err) {
-//                    // display some global error message
-//                    next(false)
-//                } else {
-//                    next(vm => {
-//                        this.getMenuList();
-//                        this.getUser();
-//                    })
-//                }
-//            })
-//        },
-
         updated: function () {
             var router = vm.$router;
             console.log("11111111111111111111111");

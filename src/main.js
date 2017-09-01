@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router' ;                    // 这是必须模块  ，vue和路由
 import ElementUI from 'element-ui';
 import VueResource from 'vue-resource';                  //异步请求插件  类似于jQuery的  ajax
+
 import 'element-ui/lib/theme-default/index.css'
                                                             //这里把src当成根目录， main.js 的上一级就是.  所以主目录下的文件都在./下面
 import routes from './config/routes'                     //这是路由位置，项目的目录
@@ -46,8 +47,6 @@ const vm = new Vue({                                         //建立全局的Vu
     router:router
 });
 window.vm = vm;
-
-
 
 
 

@@ -25,10 +25,7 @@ module.exports = {
     entry:{
         main: ['webpack-dev-server/client','./src/main.js'],    // 前面一定要这样写，要不然不能热更新
     },
-    // entry: [
-    //     'webpack/hot/only-dev-server',
-    //     './src/main.js'
-    // ], //编译入口文件
+
     output: {
         publicPath: '/elink-admin/', //服务器的路径 publicPath: config.publicPath,
         path: path.resolve(__dirname + '/elink-admin'), //编译到app目录 path: path.resolve(__dirname + config.publicPath)
@@ -156,6 +153,10 @@ module.exports = {
         stats: "errors-only",
         proxy: { //代理服务器
             '/elink-admin/sys/*': {
+                target: config.target,
+
+            },
+            '/elink-admin/elink/*': {
                 target: config.target,
 
             }

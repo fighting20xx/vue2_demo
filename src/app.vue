@@ -8,19 +8,16 @@
 
                 <ba-sidebar class="baSidebar"></ba-sidebar>                   <!--这是侧边栏 模块-->
 
-
                 <span class="al-content">
                     <span class="al-wrap">
-
-                            <router-view></router-view>
-                            <footer class="al-footer ">
-                                <div class="al-footer-right">Created by   浙江坤源节能科技有限公司<i class="ion-heart"></i></div>
-                            </footer>
-
-
+                        <!--<div id="content-tip"><span class="el-icon-arrow-right">项目接入</span></div>-->
+                        <router-view>
+                        </router-view>
+                        <footer class="al-footer ">
+                            <div class="al-footer-right">Created by   浙江坤源节能科技有限公司<i class="ion-heart"></i></div>
+                        </footer>
                     </span>
                 </span>
-
             </div>
 
                <!---这是底部的 每个页面都有的分享按钮一直存在的   -->
@@ -51,7 +48,7 @@
     }
     .al-main {
         position: absolute;
-        top: 55px;
+        top: 50px;
         bottom: 0;
         left: 0;
         right: 0;
@@ -60,12 +57,12 @@
         background-color: #eeeeee;
     }
     .baSidebar {
-        width: 165px;
+        width: 170px;
     }
     .al-content {
         position: relative;
         flex: 1 ;
-        margin: 10px 10px 5px 25px;
+        margin: 25px 10px 5px 25px;
         overflow-x: hidden;
     }
     .al-wrap {
@@ -79,4 +76,18 @@
         bottom: 0;
         left: 50%;
     }
+
+    @media only screen and (min-width: 0) and (max-width: 767px){
+        .baSidebar {
+            /*transition: all 1s;*/
+            /*margin-right: -170px;*/
+            /*opacity: 0.5;*/
+            /*z-index: 100;*/
+            width: 0;
+        }
+    }
+    #content-tip {
+        margin: 10px;
+    }
+
 </style>

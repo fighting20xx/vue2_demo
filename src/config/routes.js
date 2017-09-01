@@ -44,6 +44,10 @@ export default [
                 component: resolve => require(['../pages/testPage/testPage.vue'], resolve)
             },
             {
+                path: '/testPage2', //退出
+                component: resolve => require(['../pages/testPage/testPage2.vue'], resolve)
+            },
+            {
                 path: '*', //其他页面，强制跳转到登录页面
                 redirect: '/'
             }
